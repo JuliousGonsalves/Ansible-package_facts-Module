@@ -3,11 +3,11 @@
 
 
 
-# syntax check
+## Syntax check
 
 ansible-playbook -i hosts get_package.yml --syntax-check
 
-# Playbook run
+## Playbook run
 
 ansible-playbook -i hosts get_package.yml 
 
