@@ -8,11 +8,6 @@
       package_facts:
         manager: auto
         strategy: all
-      register: list_pack
-
-    - debug:
-        msg: "{{list_pack}}"
-
 
     - name: "checking for docker package"
       when: "'docker' in ansible_facts.packages"
@@ -23,13 +18,3 @@
       when: "'docker' not in ansible_facts.packages"
       shell: amazon-linux-extras install docker -y
 
-    - name: "checking for Apache package"
-      when: "'httpd' in ansible_facts.packages"
-      debug:
-        msg: "Apache is available in server"
-
-    - name: "Installing Apache"
-      when: "'httpd' not in ansible_facts.packages"
-      yum:
-        name: httpd
-        state: present
