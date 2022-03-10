@@ -14,7 +14,17 @@ So Here we are using "package_facts" ansible module to check whether a package i
 ~~~sh
 amazon-linux-extras install ansible2 -y
 ~~~
+## Verify Ansible Installation 
+
+~~~sh
+ansible --version
+~~~
+
+
 ## Playbook
+
+Note : You will need to add the inventory with respect to your instance.
+
 ~~~sh
 ---
 
@@ -28,12 +38,12 @@ amazon-linux-extras install ansible2 -y
         strategy: all
 
     - name: "checking for docker package"
-      when: "'docker' in ansible_facts.packages"
+      when: "'docker' in ansible_facts.packages"       // Condition check whether docker package is installed
       debug:
         msg: "Docker is available in server"
 
     - name: "Installing docker if not available"
-      when: "'docker' not in ansible_facts.packages"
+      when: "'docker' not in ansible_facts.packages"   // Condition check whether package not available
       shell: amazon-linux-extras install docker -y
 ~~~
 
@@ -45,6 +55,11 @@ ansible-playbook -i hosts get_package.yml --syntax-check
 ~~~sh
 ansible-playbook -i hosts get_package.yml 
 ~~~
+
+## Outcome
+
+When we run the playbook for first time, it will check whether the package is installed and install if not present.
+If you run the playbook again, It will skip the tasks since it is already installed.
 
 ## First Run
 ![firstrun](https://user-images.githubusercontent.com/98936958/157738947-81df90ae-1d66-4acd-9d3f-c5b9d4a11901.PNG)
