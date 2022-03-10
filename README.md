@@ -3,6 +3,14 @@
 
 
 
+# syntax check
+
+ansible-playbook -i hosts get_package.yml --syntax-check
+
+# Playbook run
+
+ansible-playbook -i hosts get_package.yml 
+
 
 # First Run
 ![firstrun](https://user-images.githubusercontent.com/98936958/157738947-81df90ae-1d66-4acd-9d3f-c5b9d4a11901.PNG)
